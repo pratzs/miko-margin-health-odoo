@@ -1,0 +1,107 @@
+<!--
+  Odoo strips <style> blocks from module descriptions, so every rule here is an
+  inline style attribute. Description images must be ABSOLUTE urls; relative paths
+  404 for every visitor. See Apps/miko-catalog-health-odoo/PUBLISHING.md.
+-->
+<section style="color:#0F172A;font-size:16px;line-height:1.62;">
+ <div style="max-width:1000px;margin:0 auto;">
+
+  <div style="padding:8px 0 40px;">
+   <h2 style="font-size:30px;line-height:1.22;font-weight:800;color:#0F172A;margin:0 0 14px;">Odoo lets you sell below cost and says nothing at all.</h2>
+   <p style="font-size:18px;color:#334155;margin:0 0 15px;">Set a sales price under the cost price and Odoo saves it without a
+   murmur. The quotation looks normal, the order confirms, the invoice posts. The
+   loss only surfaces when somebody runs a margin report, if anybody ever does.</p>
+   <div style="background:#FDF3F3;border:1px solid #F6D7D7;border-left:4px solid #DC2626;border-radius:12px;padding:18px 20px;margin:22px 0;">
+    <p style="color:#7F1D1D;margin:0;"><strong style="color:#991B1B;">This is not
+    hypothetical.</strong> The demo data that ships inside Odoo itself contains six
+    products priced below their own cost, one of them at minus 308 percent. Install
+    this on a fresh database with demo data and it finds every one.</p>
+   </div>
+   <div style="border:1px solid #E2E8F0;border-radius:12px;overflow:hidden;margin:22px 0 8px;"><img class="img-fluid" style="max-width:100%;width:100%;height:auto;display:block;" src="https://cdn.jsdelivr.net/gh/pratzs/miko-margin-health-odoo@margin-assets-1.0.0/miko_margin_health/static/description/screenshot_below_cost.png"
+      alt="Products priced below cost, worst margin first, with the cash loss per unit"/></div>
+   <p style="font-size:14px;color:#64748B;margin:10px 0 0;">Worst first, with the cash you lose per unit and the percentage.</p>
+  </div>
+
+  <div style="padding:40px 0;border-top:1px solid #E2E8F0;">
+   <h2 style="font-size:30px;line-height:1.22;font-weight:800;color:#0F172A;margin:0 0 14px;">Then it stops the next one happening</h2>
+   <p style="color:#475569;margin:0 0 15px;">A report tells you about the loss next month. This refuses to let it
+   through. Set the margin your business actually needs and Odoo enforces it at the
+   one moment it can still be changed: when somebody confirms the order.</p>
+   <div class="table-responsive" style="overflow-x:auto;margin-top:20px;">
+    <table class="table" style="width:100%;border-collapse:collapse;font-size:15px;">
+     <thead><tr style="background:#F8FAFC;"><th style="text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;">Setting</th><th style="text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;">What it does</th></tr></thead>
+     <tbody>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;"><strong>Report only</strong></td><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">Never interrupts anyone. The audit still fills in.</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;"><strong>Warn</strong></td><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">Lets the order through and writes the figures to its log, so the decision is answerable for later.</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;"><strong>Block</strong></td><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">Refuses the confirmation. Only a user holding the margin override permission can push it through, and that override is logged too.</td></tr>
+     </tbody>
+    </table>
+   </div>
+   <p style="font-size:14px;color:#64748B;margin:10px 0 0;">Measured per line, on the order total, or both. Every setting is per
+   company, so a group with several trading entities runs different rules in each.</p>
+   <p style="color:#475569;margin:0 0 15px;"><strong>The leak it actually closes is the discount.</strong> A price can
+   look perfectly healthy and the discount is what takes it under water. The check
+   reads the line subtotal, so the discount is already inside the number.</p>
+  </div>
+
+  <div style="padding:40px 0;border-top:1px solid #E2E8F0;">
+   <h2 style="font-size:30px;line-height:1.22;font-weight:800;color:#0F172A;margin:0 0 14px;">Pricelist rules that can never apply</h2>
+   <p style="font-size:18px;color:#334155;margin:0 0 15px;">Nothing else on this store does this.</p>
+   <p style="color:#475569;margin:0 0 15px;">Odoo evaluates pricelist rules in a fixed order and returns the FIRST one
+   that matches. A rule sitting behind another that already covers every case it
+   would cover is dead: it is in the list, it looks active, it has a discount on it,
+   and it has never once applied to anything. Odoo never tells you.</p>
+   <div style="border:1px solid #E2E8F0;border-radius:12px;overflow:hidden;margin:22px 0 8px;"><img class="img-fluid" style="max-width:100%;width:100%;height:auto;display:block;" src="https://cdn.jsdelivr.net/gh/pratzs/miko-margin-health-odoo@margin-assets-1.0.0/miko_margin_health/static/description/screenshot_pricelist.png"
+      alt="A pricelist rule identified as unreachable, naming the rule that beats it"/></div>
+   <p style="font-size:14px;color:#64748B;margin:10px 0 0;">It reproduces Odoo's own ordering, then names the rule that wins instead.</p>
+   <p style="color:#475569;margin:0 0 15px;">Expired rules and rules that have not started yet are separated out, so a
+   dead rule is never confused with one that is simply waiting.</p>
+  </div>
+
+  <div style="padding:40px 0;border-top:1px solid #E2E8F0;">
+   <h2 style="font-size:30px;line-height:1.22;font-weight:800;color:#0F172A;margin:0 0 14px;">It does not cry wolf</h2>
+   <p style="color:#475569;margin:0 0 15px;">A control that fires on legitimate business gets worked around, and then
+   it is worth nothing. These are never counted against anyone:</p>
+   <div class="table-responsive" style="overflow-x:auto;margin-top:20px;">
+    <table class="table" style="width:100%;border-collapse:collapse;font-size:15px;">
+     <tbody>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;"><strong>Deliberate loss leaders</strong></td><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">Tick a product as sold below cost on purpose and it leaves the rules entirely.</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;"><strong>Products with no cost</strong></td><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">A missing cost is an unanswered question, not a perfect margin. Without this every uncosted product would block every order.</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;"><strong>Free lines</strong></td><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">Samples, goodwill replacements and full discounts are deliberate.</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;"><strong>Exempt categories, pricelists and customers</strong></td><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">Clearance ranges, staff pricelists and intercompany accounts, set by you.</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;"><strong>Sections, notes and down payments</strong></td><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">Carry no goods and no margin.</td></tr>
+     </tbody>
+    </table>
+   </div>
+   <p style="font-size:14px;color:#64748B;margin:10px 0 0;">Thirty automated tests ship inside the module and are run against Odoo
+   14 through 19 before every release. Half of them exist purely to prove the module
+   stays quiet when it should.</p>
+  </div>
+
+  <div style="padding:40px 0;border-top:1px solid #E2E8F0;">
+   <h2 style="font-size:30px;line-height:1.22;font-weight:800;color:#0F172A;margin:0 0 14px;">Technical notes</h2>
+   <div class="table-responsive" style="overflow-x:auto;margin-top:20px;">
+    <table class="table" style="width:100%;border-collapse:collapse;font-size:15px;">
+     <tbody>
+      <tr><th style="text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;" style="background:#F8FAFC;text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;">Odoo versions</th><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;"><strong>14.0, 15.0, 16.0, 17.0, 18.0 and 19.0</strong>, Community and Enterprise</td></tr>
+      <tr><th style="text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;" style="background:#F8FAFC;text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;">Hosting</th><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">Odoo.sh and on premise. Odoo Online cannot run third party modules containing Python.</td></tr>
+      <tr><th style="text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;" style="background:#F8FAFC;text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;">Depends on</th><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;"><code>product</code> and <code>sale</code></td></tr>
+      <tr><th style="text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;" style="background:#F8FAFC;text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;">External services</th><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">None. Nothing leaves your database.</td></tr>
+      <tr><th style="text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;" style="background:#F8FAFC;text-align:left;padding:10px 12px;border-bottom:1px solid #E2E8F0;">Tests</th><td style="padding:10px 12px;border-bottom:1px solid #E2E8F0;color:#475569;">30 automated tests, run on all six series</td></tr>
+     </tbody>
+    </table>
+   </div>
+  </div>
+
+  <div style="padding:40px 0 8px;border-top:1px solid #E2E8F0;">
+   <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:14px;padding:24px 26px;">
+    <h3 style="font-size:19px;font-weight:700;margin:0 0 7px;">A Miko app, built by Tripster Developers</h3>
+    <p style="color:#475569;margin:0 0 15px;">We are a software engineering firm in New Zealand and we build and support
+    Odoo for businesses that run their operations on it.</p>
+    <p style="color:#475569;margin:0;">A margin rule your business needs and this does
+    not cover? <a href="mailto:support@tripsterdevelopers.com" style="color:#A8479A;font-weight:600;">support@tripsterdevelopers.com</a></p>
+   </div>
+  </div>
+
+ </div>
+</section>
