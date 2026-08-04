@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+      The settings live on our own screen rather than xpath'd into Odoo's Sales
+      settings page. That page is restructured between versions (the <setting>
+      element only exists from 17, and the block names move), so inheriting it
+      means maintaining a different view per series for no benefit. A plain form
+      on res.company is identical on every version, and it puts the rules with
+      the app instead of buried three screens away.
+    -->
+    <record id="view_company_margin_rules" model="ir.ui.view">
+        <field name="name">res.company.margin.rules</field>
+        <field name="model">res.company</field>
+        <field name="arch" type="xml">
+            <form string="Margin Rules">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                        <h3>Margin rules for this company</h3>
+                    </div>
+                    <group>
+                        <group string="What counts as enough margin">
+                            <field name="mh_min_margin_percent"/>
+                            <field name="mh_min_margin_amount"/>
+                            <field name="mh_cost_basis"/>
+                            <div colspan="2" class="text-muted">
+                                A sale that loses money is always a breach, whatever
+                                these are set to.
+                            </div>
+                        </group>
+                        <group string="What happens on confirmation">
+                            <field name="mh_enforce_mode"/>
+                            <field name="mh_check_level"/>
+                            <div colspan="2" class="text-muted">
+                                Blocking can only be bypassed by a user with the
+                                margin override permission, and every override is
+                                written to the order's log with the figures.
+                            </div>
+                        </group>
+                    </group>
+                    <group string="Never flag these">
+                        <div colspan="2" class="text-muted mb-2">
+                            A control that fires on legitimate business gets worked
+                            around. Everything here is a case where flagging would be
+                            simply wrong rather than merely inconvenient.
+                        </div>
+                        <group>
+                            <field name="mh_ignore_zero_cost"/>
+                            <field name="mh_ignore_zero_price"/>
+                        </group>
+                        <group>
+                            <field name="mh_excluded_categ_ids" widget="many2many_tags"/>
+                            <field name="mh_excluded_pricelist_ids" widget="many2many_tags"/>
+                            <field name="mh_excluded_partner_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_margin_rules" model="ir.actions.act_window">
+        <field name="name">Margin Rules</field>
+        <field name="res_model">res.company</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_company_margin_rules"/>
+        <field name="target">current</field>
+        <field name="context">{'form_view_initial_mode': 'edit'}</field>
+    </record>
+
+    <record id="action_margin_rules_current" model="ir.actions.server">
+        <field name="name">Margin Rules</field>
+        <field name="model_id" ref="base.model_res_company"/>
+        <field name="state">code</field>
+        <field name="code">
+action = env.ref('miko_margin_health.action_margin_rules').read()[0]
+action['res_id'] = env.company.id
+        </field>
+    </record>
+</odoo>
