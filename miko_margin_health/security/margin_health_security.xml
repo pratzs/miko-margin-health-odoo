@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_margin_override" model="res.groups">
+        <field name="name">Confirm orders below the margin floor</field>
+        <field name="comment">Users in this group can confirm a sales order that
+            breaks the company's margin rules. The override is written to the order's
+            message log with the figures at the time, so it is always answerable
+            for. Without this group the block cannot be bypassed.</field>
+    </record>
+</odoo>
