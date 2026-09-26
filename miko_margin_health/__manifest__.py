@@ -10,7 +10,7 @@ Also audits products priced below cost and finds pricelist rules that can never
 apply because another rule shadows them.
 """,
     'author': 'Tripster Developers',
-    'website': 'https://tripsterdevelopers.com/odoo/',
+    'website': 'https://miko.co.nz/odoo/margin-control',
     'category': 'Accounting',
     'license': 'OPL-1',
     'depends': ['product', 'sale'],
