@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Margin Control & Sold Below Cost Alert (Miko)',
-    'version': '14.0.1.0.0',
-    'summary': 'Stop orders that lose money, on your own margin rules',
+    'name': 'Below Cost Alert & Minimum Margin Control (Miko)',
+    'version': '14.0.1.0.1',
+    'summary': 'Minimum margin rules that stop a sale margin loss when the order is confirmed: sold below cost alert on your own margin rules, plus a pricelist audit',
     'description': """
 Set the margin your business actually needs, then have Odoo enforce it at the
 moment a sales order is confirmed rather than discovering the loss a month later.
